@@ -1,0 +1,2142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Curriculum Vitae – Christoph Praschl</title>
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #1c2733;
+    --muted: #5c6b7a;
+    --accent: #1a6fb5;
+    --line: #dde4ea;
+    --badge-bg: #eef3f8;
+    --card: #f7f9fb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14181d;
+      --fg: #e4e9ee;
+      --muted: #98a5b3;
+      --accent: #6ab2e8;
+      --line: #2b333c;
+      --badge-bg: #212932;
+      --card: #1b2129;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.55 "Segoe UI", system-ui, -apple-system, sans-serif;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .page { max-width: 60rem; margin: 0 auto; padding: 2.5rem 1.5rem 4rem; }
+
+  header.cv-head { display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap; }
+  header.cv-head .head-text { flex: 1 1 20rem; }
+  header.cv-head h1 { margin: 0; font-size: 2.4rem; font-weight: 300; letter-spacing: .02em; }
+  header.cv-head .subtitle { color: var(--muted); font-size: 1.15rem; margin: .2rem 0 1.2rem; }
+  header.cv-head img.portrait {
+    width: 10rem; border-radius: .5rem; object-fit: cover;
+  }
+  .topbar {
+    position: sticky; top: 0; z-index: 10;
+    display: flex; align-items: center; gap: 1.2rem;
+    padding: .55rem 1.5rem;
+    background: var(--bg);
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topbar-name { color: var(--fg); font-weight: 600; white-space: nowrap; flex-shrink: 0; }
+  .topbar-name:hover { text-decoration: none; color: var(--accent); }
+  .topnav {
+    display: flex; gap: .15rem; overflow-x: auto; scrollbar-width: none;
+    margin-left: auto; font-size: .88rem;
+  }
+  .topnav::-webkit-scrollbar { display: none; }
+  .topnav a {
+    color: var(--muted); padding: .25rem .55rem; border-radius: 1rem; white-space: nowrap;
+  }
+  .topnav a:hover { color: var(--fg); text-decoration: none; }
+  .topnav a.active { color: var(--accent); background: var(--badge-bg); }
+  .lang-pill {
+    flex-shrink: 0; font-size: .8rem; font-weight: 600; letter-spacing: .04em;
+    border: 1px solid var(--line); border-radius: 1rem; padding: .2rem .6rem;
+    color: var(--muted);
+  }
+  .lang-pill:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+  section, .cv-head { scroll-margin-top: 4rem; }
+
+  dl.contact { display: grid; grid-template-columns: max-content 1fr; gap: .15rem 1.2rem; margin: 0; }
+  dl.contact dt { color: var(--muted); }
+  dl.contact dd { margin: 0; }
+
+  section { margin-top: 2.8rem; }
+  h2 {
+    font-size: 1.45rem; font-weight: 400; letter-spacing: .02em;
+    border-bottom: 1px solid var(--line); padding-bottom: .35rem; margin: 0 0 1.2rem;
+  }
+  h3.term { font-size: 1.05rem; margin: 1.4rem 0 .5rem; color: var(--accent); font-weight: 600; }
+
+  .entry {
+    display: grid; grid-template-columns: 10rem 1fr; gap: .2rem 1.4rem;
+    padding: .45rem 0;
+  }
+  .entry + .entry { border-top: 1px dashed var(--line); }
+  .entry .when { color: var(--muted); font-size: .88rem; text-align: right; padding-top: .15rem; white-space: pre-line; }
+  .entry .what strong { font-weight: 600; }
+  .entry .what .sub { color: var(--muted); }
+  @media (max-width: 40rem) {
+    .entry { grid-template-columns: 1fr; }
+    .entry .when { text-align: left; padding-top: 0; }
+  }
+
+  ul.plain { margin: .2rem 0 .4rem; padding-left: 1.2rem; }
+  ul.plain li { margin: .12rem 0; }
+
+  .badges { display: flex; flex-wrap: wrap; gap: .35rem; margin-bottom: .25rem; }
+  .badge {
+    background: var(--badge-bg); color: var(--muted); border-radius: 1rem;
+    font-size: .74rem; padding: .1rem .6rem; white-space: nowrap;
+  }
+  .badge.status { color: var(--accent); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: .5rem; padding: 0; margin: 0; list-style: none; }
+  .chips li { background: var(--card); border: 1px solid var(--line); border-radius: .5rem; padding: .3rem .8rem; }
+
+  .about-text { margin: 0; max-width: 48rem; }
+
+  .carousel { display: flex; align-items: stretch; gap: .4rem; }
+  .car-track {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+    scroll-behavior: smooth; flex: 1; border-radius: .6rem;
+    background: var(--card); border: 1px solid var(--line);
+    scrollbar-width: none;
+  }
+  .car-track::-webkit-scrollbar { display: none; }
+  .car-slide {
+    flex: 0 0 100%; min-width: 100%; scroll-snap-align: center;
+    display: flex; gap: 1.5rem; padding: 1.4rem; align-items: center;
+  }
+  .car-media { flex: 0 0 38%; }
+  .car-media img {
+    width: 100%; max-height: 16rem; object-fit: cover; border-radius: .5rem; display: block;
+  }
+  .car-placeholder {
+    width: 100%; aspect-ratio: 4 / 3; max-height: 16rem; border-radius: .5rem;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, var(--badge-bg), var(--line));
+    color: var(--muted); font-size: 2.6rem; font-weight: 600; letter-spacing: .05em;
+  }
+  .car-text { flex: 1; }
+  .car-text h3 { margin: 0 0 .4rem; font-size: 1.1rem; }
+  .car-text p { margin: 0; color: var(--muted); }
+  .car-link { display: inline-block; margin-top: .6rem; }
+  .car-btn {
+    background: none; border: none; color: var(--accent); font-size: 1.9rem;
+    cursor: pointer; padding: 0 .3rem; align-self: center;
+  }
+  .car-btn:hover { color: var(--fg); }
+  .car-dots { display: flex; justify-content: center; gap: .45rem; margin-top: .7rem; }
+  .car-dots button {
+    width: .55rem; height: .55rem; border-radius: 50%; border: none; padding: 0;
+    background: var(--line); cursor: pointer;
+  }
+  .car-dots button.active { background: var(--accent); }
+  @media (max-width: 40rem) {
+    .car-slide { flex-direction: column; align-items: stretch; }
+    .car-media { flex: none; }
+  }
+  @media print {
+    .car-btn, .car-dots { display: none; }
+    .car-track { display: block; overflow: visible; }
+    .car-slide { page-break-inside: avoid; }
+  }
+
+  footer { margin-top: 3.5rem; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+
+  @media print {
+    body { background: #fff; color: #000; }
+    .topbar { display: none; }
+    .page { max-width: none; padding: 0; }
+  }
+</style>
+</head>
+<body>
+<header class="topbar">
+  <a class="topbar-name" href="#top">Christoph Praschl</a>
+  <nav class="topnav" aria-label="Sections">
+    <a href="#about" data-section="about">About</a>
+    <a href="#current-projects" data-section="current-projects">Highlights</a>
+    <a href="#education" data-section="education">Education</a>
+    <a href="#experience" data-section="experience">Experience</a>
+    <a href="#teaching" data-section="teaching">Teaching</a>
+    <a href="#publications" data-section="publications">Publications</a>
+    <a href="#theses" data-section="theses">Theses</a>
+    <a href="#academic-activities" data-section="academic-activities">Academic</a>
+    <a href="#projects" data-section="projects">Projects</a>
+    <a href="#outreach" data-section="outreach">Other</a>
+    <a href="#training" data-section="training">Training</a>
+    <a href="#awards" data-section="awards">Awards</a>
+    <a href="#licenses" data-section="licenses">Licences</a>
+    <a href="#interests" data-section="interests">Interests</a>
+  </nav>
+  <a class="lang-pill" id="lang-pill" href="de/index.html"
+     aria-label="Deutsche Version">DE</a>
+</header>
+<div class="page" id="top">
+  <header class="cv-head">
+    <div class="head-text">
+      <h1>Christoph Praschl</h1>
+      <p class="subtitle">FH-Ass.Prof. Ing. Christoph Praschl, MSc</p>
+      <dl class="contact">
+        <dt>Phone</dt>
+        <dd>+43 5 0804 27150</dd>
+        <dt>Email</dt>
+        <dd><a href="mailto:christoph.praschl@fh-hagenberg.at">christoph.praschl@fh-hagenberg.at</a></dd>
+        <dt>Address (office)</dt>
+        <dd>SH3.021, Softwarepark 11, 4232 Hagenberg im Mühlkreis</dd>
+        <dt>ORCID</dt>
+        <dd><a href="https://orcid.org/0000-0002-9711-4818">0000-0002-9711-4818</a></dd>
+        <dt>LinkedIn</dt>
+        <dd><a href="https://www.linkedin.com/in/christophpraschl">/christophpraschl</a></dd>
+      </dl>
+    </div>
+    <img class="portrait" src="assets/portrait.jpg" alt="Christoph Praschl">
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <p class="about-text">I am an assistant professor at the University of Applied Sciences Upper Austria (Campus Hagenberg) and research project manager in the AIST research group. My research focuses on computer vision – in particular drone-based wildlife monitoring, which is also the topic of my doctoral studies at the Institute of Computational Perception at Johannes Kepler University Linz. In addition, I teach courses on databases, image processing and web technologies at several universities. Beyond research and teaching, I spend my time with drones, 3D printing, graphic design and photography.</p>
+  </section>
+
+  <section id="current-projects">
+    <h2>Highlights</h2>
+    <div class="carousel">
+      <button class="car-btn" data-dir="-1" aria-label="Previous project">&#8249;</button>
+      <div class="car-track">
+        <article class="car-slide">
+          <div class="car-media">
+            <img src="assets/highlights/qgis.jpg" alt="BAMBI QGIS Plugin" loading="lazy">
+          </div>
+          <div class="car-text">
+            <h3>BAMBI QGIS Plugin</h3>
+            <p>Open-source QGIS plugin for drone-based wildlife surveys: detection, tracking and geo-referencing of wildlife in RGB and thermal footage, orthomosaic generation, and analysis and manual review of the results directly in the GIS.</p>
+            <a class="car-link" href="https://plugins.qgis.org/plugins/bambi_wildlife_detection/">QGIS plugin &#8594;</a>
+          </div>
+        </article>
+        <article class="car-slide">
+          <div class="car-media">
+            <img src="assets/highlights/dataset.jpg" alt="BAMBI Dataset" loading="lazy">
+          </div>
+          <div class="car-text">
+            <h3>BAMBI Dataset</h3>
+            <p>Open multimodal dataset of nadir RGB and thermal drone recordings of forest wildlife, with annotated animals for detection and classification (NeurIPS 2026 – Evaluations and Datasets Track).</p>
+            <a class="car-link" href="https://github.com/bambi-eco/Dataset">GitHub &#8594;</a>
+          </div>
+        </article>
+        <article class="car-slide">
+          <div class="car-media">
+            <img src="assets/highlights/geofiles.jpg" alt="GeoFiles" loading="lazy">
+          </div>
+          <div class="car-text">
+            <h3>GeoFiles</h3>
+            <p>Open-source library for reading, writing and converting geo-referenced geometry file formats such as GeoJSON, CityGML, KML, GeoOBJ, GeoOFF and GeoPLY.</p>
+            <a class="car-link" href="https://github.com/FHOOEAIST/geofiles">GitHub &#8594;</a>
+          </div>
+        </article>
+        <article class="car-slide">
+          <div class="car-media">
+            <img src="assets/highlights/relational_model_creator.jpg" alt="Relational Model Creator" loading="lazy">
+          </div>
+          <div class="car-text">
+            <h3>Relational Model Creator</h3>
+            <p>GUI tool for creating relational database models in text notation.</p>
+            <a class="car-link" href="https://gitlab.com/cpraschl/relationalmodelcreator">GitLab &#8594;</a>
+          </div>
+        </article>
+      </div>
+      <button class="car-btn" data-dir="1" aria-label="Next project">&#8250;</button>
+    </div>
+    <div class="car-dots" role="tablist"></div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="entry">
+      <div class="when">since 10|2022</div>
+      <div class="what">
+        <strong>Johannes-Kepler-Universität Linz</strong><br>
+        <span class="sub">Doctoral studies @ Institute of Computational Perception</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2017 - 07|2019</div>
+      <div class="what">
+        <strong>FH OÖ – Campus Hagenberg</strong><br>
+        <span class="sub">Software Engineering (Master)</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2014 - 07|2017</div>
+      <div class="what">
+        <strong>FH OÖ – Campus Hagenberg</strong><br>
+        <span class="sub">Software Engineering (Bachelor)
+(focus on web development)</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">09|2005 - 07|2013</div>
+      <div class="what">
+        <strong>BRG/BORG St. Pölten</strong><br>
+        <span class="sub">Information &amp; communication technology</span>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="experience">
+    <h2>Professional Experience</h2>
+    <div class="entry">
+      <div class="when">since 10|2022</div>
+      <div class="what">
+        <strong>FH Oberösterreich Studienbetriebs GmbH</strong><br>
+        <span class="sub">Assistant Professor @ Campus Hagenberg</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">since 06|2022</div>
+      <div class="what">
+        <strong>FH Oberösterreich F&amp;E GmbH</strong><br>
+        <span class="sub">Research Project Manager @ research group AIST</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">since 10|2019</div>
+      <div class="what">
+        <strong>FH Oberösterreich / FH Wiener Neustadt / Management Center Innsbruck / Veterinär Medizinische Universität Wien</strong><br>
+        <span class="sub">Lecturer at several universities (see teaching experience)</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">since 10|2017</div>
+      <div class="what">
+        <strong>FH Oberösterreich F&amp;E GmbH</strong><br>
+        <span class="sub">Research associate @ research group AIST</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">04|2017 – 06|2017</div>
+      <div class="what">
+        <strong>FH Oberösterreich F&amp;E GmbH</strong><br>
+        <span class="sub">Internship @ research group eHealth (later AIST)</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">03|2017 – 06|2017</div>
+      <div class="what">
+        <strong>FH Oberösterreich – Campus Hagenberg</strong><br>
+        <span class="sub">Tutorial: XML</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">03|2016 – 06|2016</div>
+      <div class="what">
+        <strong>FH Oberösterreich – Campus Hagenberg</strong><br>
+        <span class="sub">Tutorial: data modelling/design</span>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="teaching">
+    <h2>Teaching Experience</h2>
+    <div class="entry">
+      <div class="when">SS 2027</div>
+      <div class="what">
+        <strong>FH Oberösterreich - Campus Hagenberg</strong>
+        <div>Sabbatical</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Management Center Innsbruck (MCI)</strong>
+        <div>Lecturer in &#34;Digital Business &amp; Software Engineering&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Databases II and Big Data (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">WS 2026</div>
+      <div class="what">
+        <strong>FH Oberösterreich - Campus Hagenberg</strong>
+        <div>Supervision of student projects:</div>
+        <ul class="plain">
+          <li class="sub">Studienprojekt SimplyStrong by Uniqa (Software Engineering Bakk.; 2 SWS)</li>
+          <li class="sub">Studienprojekt Vincent Group (Software Engineering Bakk.; 2 SWS)</li>
+        </ul>
+        <div>Lecturer (sabbatical replacement):</div>
+        <ul class="plain">
+          <li class="sub">Signal and image processing (lecture &amp; lab; Human Centered Computing Master; 1.5 SWS)</li>
+        </ul>
+        <div>Supervision of internships:</div>
+        <ul class="plain">
+          <li class="sub">TRUMPF Maschinen Austria: tool for estimating the loading space of a machine tool (Artificial Intelligence Solutions Bachelor)</li>
+          <li class="sub">Embedded Systems research group, Research Center Hagenberg (FH OÖ Forschungs- und Entwicklungs GmbH): optical facial recognition system for cattle (Artificial Intelligence Solutions Bachelor)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Veterinärmedizinische Universität Wien (VetMed)</strong>
+        <div>Lecturer in &#34;Precision Animal Health&#34; (Master, English):</div>
+        <ul class="plain">
+          <li class="sub">Fundamentals of computer science I (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Management Center Innsbruck (MCI)</strong>
+        <div>Lecturer in &#34;Digital Business &amp; Software Engineering&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Databases I (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">SS 2026</div>
+      <div class="what">
+        <strong>FH Oberösterreich - Campus Hagenberg (FH OÖ)</strong>
+        <div>Lecturer in &#34;Software Engineering&#34; (Bachelor, part-time):</div>
+        <ul class="plain">
+          <li class="sub">Computer graphics and image processing (lab; 0.4 SWS)</li>
+        </ul>
+        <div>Lecturer in &#34;Medical and Bioinformatics&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Server-side web technologies (lecture + lab; 2 SWS)</li>
+        </ul>
+        <div>Lecturer in &#34;Artificial Intelligence Solutions&#34; (Bachelor; English):</div>
+        <ul class="plain">
+          <li class="sub">Computer Vision (lecture + lab; 0.5 SWS)</li>
+        </ul>
+        <div>Supervision of student projects:</div>
+        <ul class="plain">
+          <li class="sub">Studienprojekt SimplyStrong by Uniqa (Software Engineering Bakk.; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Veterinärmedizinische Universität Wien (VetMed)</strong>
+        <div>Lecturer in &#34;Precision Animal Health&#34; (Master, English):</div>
+        <ul class="plain">
+          <li class="sub">Data sources and databases (lecture; 2 SWS)</li>
+          <li class="sub">Data quality and preparation (lecture; 2.2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Management Center Innsbruck (MCI)</strong>
+        <div>Lecturer in &#34;Digital Business &amp; Software Engineering&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Databases II and Big Data (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">WS 2025</div>
+      <div class="what">
+        <strong>FH Oberösterreich - Campus Hagenberg</strong>
+        <div>Supervision of student projects:</div>
+        <ul class="plain">
+          <li class="sub">Studienprojekt NPHT (Software Engineering Bakk.; 2 SWS)</li>
+          <li class="sub">Studienprojekt CAS (Software Engineering Bakk. BB; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Veterinärmedizinische Universität Wien (VetMed)</strong>
+        <div>Lecturer in &#34;Precision Animal Health&#34; (Master, English):</div>
+        <ul class="plain">
+          <li class="sub">Fundamentals of computer science I (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Management Center Innsbruck (MCI)</strong>
+        <div>Lecturer in &#34;Digital Business &amp; Software Engineering&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Databases I (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">SS 2025</div>
+      <div class="what">
+        <strong>FH Oberösterreich - Campus Hagenberg (FH OÖ)</strong>
+        <div>Lecturer in &#34;Software Engineering&#34; (Bachelor, part-time):</div>
+        <ul class="plain">
+          <li class="sub">Computer graphics and image processing (lab; 0.4 SWS)</li>
+        </ul>
+        <div>Lecturer in &#34;Medical and Bioinformatics&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Server-side web technologies (lecture + lab; 2 SWS)</li>
+        </ul>
+        <div>Supervision of student projects:</div>
+        <ul class="plain">
+          <li class="sub">Studienprojekt NPHT (Software Engineering Bakk.; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Veterinärmedizinische Universität Wien (VetMed)</strong>
+        <div>Lecturer in &#34;Precision Animal Health&#34; (Master, English):</div>
+        <ul class="plain">
+          <li class="sub">Data sources and databases (lecture; 2 SWS)</li>
+          <li class="sub">Data quality and preparation (lecture; 2.2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Management Center Innsbruck (MCI)</strong>
+        <div>Lecturer in &#34;Digital Business &amp; Software Engineering&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Databases II and Big Data (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">WS 2024</div>
+      <div class="what">
+        <strong>FH Oberösterreich - Campus Hagenberg</strong>
+        <div>Supervision of student projects:</div>
+        <ul class="plain">
+          <li class="sub">Studienprojekt Treetop (Software Engineering Bakk.; 2 SWS)</li>
+          <li class="sub">Studienprojekt Drone Footage (Interactive Media; 0,25 SWS)</li>
+        </ul>
+        <div>Lecturer in &#34;Media Technology &amp; Design&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Hypermedia Systems and Architecture (lecture; 1 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Veterinärmedizinische Universität Wien (VetMed)</strong>
+        <div>Lecturer in &#34;Precision Animal Health&#34; (Master, English):</div>
+        <ul class="plain">
+          <li class="sub">Fundamentals of computer science I (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Management Center Innsbruck (MCI)</strong>
+        <div>Lecturer in &#34;Digital Business &amp; Software Engineering&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Databases I (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">SS 2024</div>
+      <div class="what">
+        <strong>FH Oberösterreich - Campus Hagenberg (FH OÖ)</strong>
+        <div>Lecturer in &#34;Software Engineering&#34; (Bachelor, full- and part-time):</div>
+        <ul class="plain">
+          <li class="sub">Computer graphics and image processing (lab; 0.5 &amp; 0.4 SWS)</li>
+        </ul>
+        <div>Lecturer in &#34;Medical and Bioinformatics&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Server-side web technologies (lecture + lab; 2 SWS)</li>
+        </ul>
+        <div>Supervision of student projects:</div>
+        <ul class="plain">
+          <li class="sub">Studienprojekt Treetop (Software Engineering Bakk.; 2 SWS)</li>
+          <li class="sub">Studienprojekt Drone Footage (Interactive Media; 0,25 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Veterinärmedizinische Universität Wien (VetMed)</strong>
+        <div>Lecturer in &#34;Precision Animal Health&#34; (Master, English):</div>
+        <ul class="plain">
+          <li class="sub">Data sources and databases (lecture; 2 SWS)</li>
+          <li class="sub">Data quality and preparation (lecture; 2.2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Management Center Innsbruck (MCI)</strong>
+        <div>Lecturer in &#34;Digital Business &amp; Software Engineering&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Databases II and Big Data (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">WS 2023</div>
+      <div class="what">
+        <strong>FH Oberösterreich - Campus Hagenberg</strong>
+        <div>Supervision of student projects:</div>
+        <ul class="plain">
+          <li class="sub">Studienprojekt MBK (Software Engineering Bachelor; 2 SWS)</li>
+          <li class="sub">Studienprojekt Unity Scenes for Drone Footage (Interactive Media Master; 0,5 SWS)</li>
+        </ul>
+        <div>Lecturer in &#34;Media Technology &amp; Design&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Hypermedia Systems and Architecture (lecture; 1 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Veterinärmedizinische Universität Wien (VetMed)</strong>
+        <div>Lecturer in &#34;Precision Animal Health&#34; (Master, English):</div>
+        <ul class="plain">
+          <li class="sub">Fundamentals of computer science I (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Management Center Innsbruck (MCI)</strong>
+        <div>Lecturer in &#34;Digital Business &amp; Software Engineering&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Databases I (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">SS 2023</div>
+      <div class="what">
+        <strong>FH Oberösterreich - Campus Hagenberg</strong>
+        <div>Lecturer in &#34;Software Engineering&#34; (Bachelor, full- and part-time):</div>
+        <ul class="plain">
+          <li class="sub">Computer graphics and image processing (lab; 0.5 &amp; 0.4 SWS)</li>
+        </ul>
+        <div>Lecturer in &#34;Medical and Bioinformatics&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Server-side web technologies (lecture + lab; 2 SWS)</li>
+        </ul>
+        <div>Supervision of student projects:</div>
+        <ul class="plain">
+          <li class="sub">Studienprojekt MBK (Software Engineering Bachelor; 2 SWS)</li>
+          <li class="sub">Studienprojekt Deep-Learning-Object Detection (Medientechnik &amp; Design Bachelor; 0,7 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Management Center Innsbruck (MCI)</strong>
+        <div>Lecturer in &#34;Digital Business &amp; Software Engineering&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Databases II and Big Data (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">WS 2022</div>
+      <div class="what">
+        <strong>FH Oberösterreich - Campus Hagenberg (FH OÖ)</strong>
+        <div>Supervision of student projects:</div>
+        <ul class="plain">
+          <li class="sub">Projekt LKW Walter (Software Engineering Bachelor; 2 SWS)</li>
+          <li class="sub">Projekt Infrared Camera (Interactive Media Master; 0,5 SWS)</li>
+          <li class="sub">Projekt Video Mapping (Interactive Media Master; 0,5 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Management Center Innsbruck (MCI)</strong>
+        <div>Lecturer in &#34;Digital Business &amp; Software Engineering&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Databases I (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">SS 2022</div>
+      <div class="what">
+        <strong>FH Oberösterreich - Campus Hagenberg (FH OÖ)</strong>
+        <div>Lecturer in &#34;Software Engineering&#34; (Bachelor, full- and part-time):</div>
+        <ul class="plain">
+          <li class="sub">Computer graphics and image processing (lab; 0.5 &amp; 0.4 SWS)</li>
+        </ul>
+        <div>Supervision of student projects:</div>
+        <ul class="plain">
+          <li class="sub">Projekt LKW Walter (Software Engineering Bachelor; 2 SWS)</li>
+          <li class="sub">Projekt Label Together (Medizin &amp; Bioinformatik Bachelor; 1 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Management Center Innsbruck (MCI)</strong>
+        <div>Lecturer in &#34;Digital Business &amp; Software Engineering&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Databases II and Big Data (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">WS 2021</div>
+      <div class="what">
+        <strong>FH Oberösterreich - Campus Hagenberg (FH OÖ)</strong>
+        <div>Supervision of student projects:</div>
+        <ul class="plain">
+          <li class="sub">Projekt BioImaging (Medizin &amp; Bioinformatik Bachelor; 3 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Management Center Innsbruck (MCI)</strong>
+        <div>Lecturer in &#34;Digital Business &amp; Software Engineering&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Databases I (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">WS 2020</div>
+      <div class="what">
+        <strong>FH Wiener Neustadt - Campus Wieselburg (FHWN)</strong>
+        <div>Lecturer in &#34;eCommerce&#34; (Master):</div>
+        <ul class="plain">
+          <li class="sub">Software development &amp; programming (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>Management Center Innsbruck (MCI)</strong>
+        <div>Lecturer in &#34;Digital Business &amp; Software Engineering&#34; (Bachelor):</div>
+        <ul class="plain">
+          <li class="sub">Databases I (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">SS 2020</div>
+      <div class="what">
+        <strong>FH Oberösterreich - Campus Hagenberg (FH OÖ)</strong>
+        <div>Lecturer in &#34;Software Engineering&#34; (Bachelor, full- and part-time):</div>
+        <ul class="plain">
+          <li class="sub">Computer graphics and image processing (lab; 0.5 &amp; 0.4 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">WS 2019</div>
+      <div class="what">
+        <strong>FH Oberösterreich - Campus Hagenberg (FH OÖ)</strong>
+        <div>Lecturer (sabbatical replacement):</div>
+        <ul class="plain">
+          <li class="sub">Signal and image processing (lecture &amp; lab; Human Centered Computing Master; 1.5 SWS)</li>
+          <li class="sub">Computer graphics and medical visualisation (lecture &amp; lab; Medical and Bioinformatics Bachelor; 1.3 SWS)</li>
+        </ul>
+        <div>Supervision of student projects:</div>
+        <ul class="plain">
+          <li class="sub">Projekt Innoforce (Medizin &amp; Bioinformatik Bachelor; 3 SWS)</li>
+        </ul>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when"></div>
+      <div class="what">
+        <strong>FH Wiener Neustadt - Campus Wieselburg (FHWN)</strong>
+        <div>Lecturer in &#34;eCommerce&#34; (Master):</div>
+        <ul class="plain">
+          <li class="sub">Software development &amp; programming (lecture; 2 SWS)</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span><span class="badge status">accepted</span>        </div>
+        Praschl C., Markoff H., Maschek A., Jantsch W., Wohlfahrt S., Jørgensen A., Mogensen C., Skadhauge M., Beery S., Ørsted M., Schedl D. <strong>The BAMBI Dataset: Multimodal Nadir UAV-Recordings of Forest Wildlife</strong>. NeurIPS 2026 – Evaluations and Datasets Track (2026).      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Ludoški I., Praschl C., Schedl D., Urošević M. <strong>Non-Invasive Monitoring and Counting of Red Deer Using UAVs Equipped with Visible-Light and Thermal Cameras</strong>. International Symposium on Animal Sciences (ISAS) 2026, Novi Sad – Book of Abstracts, p. 14 (ISBN 978-86-7520-662-0).      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Process Mining</span>        </div>
+        Bernert L., Krauss O., Praschl C., Sandler S., Trajkovska N., Haider M., Hecktor R., Roiss M., Roth D. <strong>Safety and efficacy of a clinical decision support system for chest pain in a tertiary care emergency department</strong>. European Emergency Medicine Congress (2026).      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Markoff H., Praschl C., Jørgensen A., Mogensen C., Skadhauge M., Beery S., Ørsted M., Schedl D. <strong>Oh Deer, Should I Handle This? Seasonal Priors for Selective Wildlife Fine-Grained Annotation</strong>. CV4E Workshop @ ECCV 2026.      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Markoff H., Praschl C., Ludoški I., Beery S., Ørsted M., Schedl D. <strong>When One Modality Is Not Enough: Fine-Grained Wildlife Classification from Aerial RGB–Thermal Imagery</strong>. CV4E Workshop @ ECCV 2026.      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Coucke V., Maschek A., Schedl D. <strong>Stay Local or Go Global: Geo-Referenced Bounding Boxes for Tracking Wildlife in Thermal Drone Videos</strong>. IET Computer Vision (2026). DOI: <a href="https://doi.org/10.1049/cvi2.70077">10.1049/cvi2.70077</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Schedl D. <strong>From Virtual Forests to Real Wildlife: Synthethic Non-Radiometric Thermal UAV Data for Animal Detection</strong>. Siggraph 2026 (2026). DOI: <a href="https://doi.org/10.1145/3799825.3818732">10.1145/3799825.3818732</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Markoff H., Maschek A., Jantsch W., Wohlfahrt S., Leitner H., Beery S., Ørsted M., Schedl D. <strong>The BAMBI Dataset: Multimodal Nadir UAV-Recordings of Forest Wildlife</strong>. CV4Animals Workshop @ CPVR 2026 (2026).      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Process Mining</span>        </div>
+        Bernert L., Krauss O., Praschl C., Sandler S., Trajkovska N., Haider M., Hecktor R., Roiss M., Roth D. <strong>Impact of a clinical decision support system for chest pain in a tertiary care emergency department</strong>. 25th International Conference on Emergency Medicine 2026.      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">eHealth</span>        </div>
+        Krauss O., Pointner A., Praschl C. <strong>Managing Incompatible FHIR Implementation Guides in a Single Backend: Namespace-Based Storage in Neo4j and Multi-Profile Delivery</strong>. DHealth (2026). DOI: <a href="https://doi.org/10.3233/SHTI260085">10.3233/SHTI260085</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Process Mining</span>        </div>
+        Trajkovska N., Kastenhofer S., Bauernfeind S., Sandler S., Praschl C., Krauss O., Hecktor R., Herzmanek D., Roiss M., Haider M., Rechenmacher M., Roth D. <strong>Process Mining on FHIR AuditEvents: Conformance Checking with a Standard Operating Procedure for Chest Pain</strong>. MIE 2026 (2026). DOI: <a href="https://doi.org/10.3233/SHTI260425">10.3233/SHTI260425</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Schoibesberger S., Schedl D. <strong>Evaluation of Novel View Synthesis in the Context of Radiometric Drone Imagery</strong>. GRIVAPP 2026 (2026). DOI: <a href="https://doi.org/10.5220/0014460900004728">10.5220/0014460900004728</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Karbasch M., Schedl D. <strong>Syntethic Generation of Drone Footage using Diffusion Models</strong>. Eurocast 2026 (2026).      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Software Engineering</span>        </div>
+        Dalkilic M., Praschl C. <strong>Guided Code Generation with Large Language Models and Static Code Analysis</strong>. Eurocast 2026 (2026).      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Process Mining</span>        </div>
+        Trajkovska N., Kastenhofer S., Bauernfeind S., Sandler S., Praschl C., Krauss O., Hecktor R., Herzmanek D., Roiss M., Haider M., Rechenmacher M., Roth D. <strong>Tracing Clinical Pathways from Unstructured Medical Documents: A Case Study on a Standard Operating Procedure for Chest Pain</strong>. Eurocast 2026 (2026).      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2025</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Process Mining</span>        </div>
+        Rechenmacher M., Kastenhofer S., Krauss O., Praschl C., Sandler S., Roiss M., Roth D. <strong>CHESTMAP - Chest Pain Management Process Analysis in Real World Data</strong>. European Emergency Medicine Congress (2025).      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2025</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Poster</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Coucke V., Maschek A., Schedl D. <strong>Multi-Object Tracking of Wildlife in Forests Using Nadir Thermal Aerial Videos</strong>. 5th Int. Workshop on Camera traps, AI, and Ecology (2025).      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2025</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Poster</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Schedl D. <strong>Visual Wildlife Monitoring in Forests using Uncrewed Aerial Vehicles</strong>. WildDrone Summer School 2025. <a href="https://wilddrone.github.io/training/summer-school/posters">Link</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2025</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Wohlfahrt S., Praschl C., Leitner H., Jantsch W., Konic J., Schueler S., Schedl D. <strong>Advancing Wildlife Monitoring: Drone-Based Sampling for Roe Deer Density Estimation</strong>. International Wildlife Congress (2025).      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2025</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Journal</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Schedl D., Stöckl A. <strong>Modeling Wildlife Accident Risk with Gaussian Mixture Models</strong>. In: Lecture Notes in Computer Science. Volume 15173 (2025). DOI: <a href="https://doi.org/10.1007/978-3-031-82957-4_5">10.1007/978-3-031-82957-4_5</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2025</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Modelling</span>        </div>
+        Praschl C., Dalkilic M., Bauernfeind S., Wakolbinger M. &amp; Zwettler G. A. <strong>Customization and Analysis of Orthopedic Aids</strong>. In: Lecture Notes in Computer Science. Volume 15173 (2025). DOI: <a href="https://doi.org/10.1007/978-3-031-82957-4_32">10.1007/978-3-031-82957-4_32</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2024</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Böss L., Schedl D. <strong>Reconstructionless Airborne Radiance Fields</strong>. Siggraph (2024). DOI: <a href="https://doi.org/10.1145/3641234.3671077">10.1145/3641234.3671077</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2024</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Bauernfeind S., Wakolbinger M., Zwettler G. <strong>Digitalisierung der Orthopädie mithilfe von Künstlicher Intelligenz</strong>. Kepler Science Days (2024).      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Journal</span>
+<span class="badge">Modelling</span>        </div>
+        Praschl C., Krauss O. <strong>Geospatial File Formats for Exchanging 3D Geometric Models: A Review and Extension</strong>. Applied Geomatics (2023). DOI: <a href="https://doi.org/10.1007/s12518-023-00543-6">10.1007/s12518-023-00543-6</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Stöckl A., Fleischer M., Schedl D. <strong>Assessment of Wildlife Accident Risk using a Drone-based Population Monitoring System</strong>. EU Safety 2023, Reykjavik, Iceland (2023).      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Schedl D. <strong>Towards an Automated Biodiversity Monitoring Process for Forest Animals using Drones</strong>. Proceedings of the 11th International Workshop on Simulation for Energy, Sustainable Development &amp; Environment (2023). DOI: <a href="https://doi.org/10.46354/i3m.2023.sesde.002">10.46354/i3m.2023.sesde.002</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Databases</span>        </div>
+        Pointner A., Praschl C., Krauss O. <strong>Enhancing Interoperability of HL7 Resources Using Namespaces in Graph Databases</strong>. Proceedings of the 12th International Workshop on Innovative Simulation for Healthcare (2023). DOI: <a href="https://doi.org/10.46354/i3m.2023.iwish.001">10.46354/i3m.2023.iwish.001</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Zwettler G., Trixner M., Schartmüller C., Bauernfeind S., Stockinger T., Praschl C. <strong>Towards an Automated Process for Adaptive Modelling of Orthoses and Shoe Insoles in Additive Manufacturing</strong>. Proceedings of the 12th International Workshop on Innovative Simulation for Healthcare (IWISH 2023). DOI: <a href="https://doi.org/10.46354/i3m.2023.iwish.005">10.46354/i3m.2023.iwish.005</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Journal</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Zopf L., Kiemeyer E., Langthallner I., Ritzberger D., Slowak A., Weigl M., Blüml V., Nešić N., Stojmenović M., Kniewallner K., Aigner L., Winkler S., Walter A. <strong>U-Net based vessel segmentation for murine brains with small μMRI reference datasets</strong>. Plos one (2023). DOI: <a href="https://doi.org/10.1371/journal.pone.0291946">10.1371/journal.pone.0291946</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Böss L., Probst K., Schedl D. <strong>Towards a Multispectral Airborne Light Field Dataset of Forest Animals</strong>. Proceedings of 3rd Int. Workshop on Camera traps, AI, and Ecology (2023).      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Bauernfeind S., Praschl C., Wakolbinger M., Zwettler G. <strong>Classification of Footprints for Correctives in Orthopedics</strong>. 2023 International Conference on Electrical, Computer, Communications and Mechatronics Engineering (ICECCME), 2023. DOI: <a href="https://doi.org/10.1109/ICECCME57830.2023.10253117">10.1109/ICECCME57830.2023.10253117</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Modelling</span>        </div>
+        Praschl C., Bauernfeind S., Leitner C., Zwettler G. <strong>Domain-Driven Design as Model Contract in Full-Stack Development</strong>. 2023 International Conference on Electrical, Computer, Communications and Mechatronics Engineering (ICECCME), 2023. DOI: <a href="https://doi.org/10.1109/ICECCME57830.2023.10252654">10.1109/ICECCME57830.2023.10252654</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Databases</span>        </div>
+        Pritz S., Zeinzinger M., Praschl C., Krauss O., Harrer M. <strong>Performance Impact of Parallel Access of Time Series in the Context of Relational, NoSQL and NewSQL Database Management Systems</strong>. 2023 International Conference on Electrical, Computer, Communications and Mechatronics Engineering (ICECCME), 2023. DOI: <a href="https://doi.org/10.1109/ICECCME57830.2023.10253446">10.1109/ICECCME57830.2023.10253446</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Journal</span>
+<span class="badge">Modelling</span>        </div>
+        Schuler A., Pointner A., Praschl C. <strong>Analysing and Transforming Graph Structures: The Graph Transformation Framework</strong>. MDPI Software 2023, 2, 218-233. DOI: <a href="https://doi.org/10.3390/software2020010">10.3390/software2020010</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Poster</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C. <strong>Drone-based Population Monitoring of Wildlife using Light-Field Samples and Video Sequences in Wooded Environments Utilizing Artificial Intelligence</strong>. Doctoral Consortium of the 18th International Joint Conference on Computer Vision, Imaging and Computer Graphics Theory and Applications, 2023. <a href="https://pure.fh-ooe.at/de/publications/c8807944-e114-452d-8de2-3f76c26e6d84">Link</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Kaiser R., Zwettler G. <strong>Generative Adversarial Network Synthesis for Improved Deep Learning Model Training of Fuzzy Structured Alpine Plants</strong>. Proceedings of the 18th International Joint Conference on Computer Vision, Imaging and Computer Graphics Theory and Applications, 2023. DOI: <a href="https://doi.org/10.5220/0011607100003417">10.5220/0011607100003417</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2022</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Journal</span>
+<span class="badge">Modelling</span>        </div>
+        Veichtlbauer A., Praschl C., Gaisberger L., Steinmaurer G., Strasser T. <strong>Toward an Effective Community Energy Management by Using a Cluster Storage</strong>. IEEE Access, Vol. 10, 2022. DOI: <a href="https://doi.org/10.1109/ACCESS.2022.3216298">10.1109/ACCESS.2022.3216298</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2022</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Databases</span>        </div>
+        Praschl C., Pritz S., Krauss O., Harrer M. <strong>A Comparison Of Relational, NoSQL and NewSQL Database Management Systems For The Persistence Of Time Series Data</strong>. 2022 International Conference on Electrical, Computer, Communications and Mechatronics Engineering (ICECCME), 2022. DOI: <a href="https://doi.org/10.1109/ICECCME55909.2022.9988333">10.1109/ICECCME55909.2022.9988333</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2022</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Poster</span>
+<span class="badge">Computer Vision</span>        </div>
+        Schedl D., Praschl C. <strong>BAMBI - Biodiversity Airborne Monitoring Based on Intelligent UAV sampling</strong>. 7. Symposium for research in protected areas. Conference. Vol. 2. 2022.      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2022</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Kaiser R., Praschl C., Zwettler G. <strong>Counting the countless: Machine learning for long-term monitoring of alpine plant diversity in the Hohe Tauern National Park</strong>. 7. Symposium for research in protected areas, 2022. DOI: <a href="https://doi.org/10.25365/phaidra.355">10.25365/phaidra.355</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2022</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Pritz S., Praschl C., Kaiser R., Zwettler G. <strong>Visual Change Detection in Multi-Temporal Transects of Alpine Plants</strong>. Proceedings of the 10th International Workshop on Simulation for Energy, Sustainable Development &amp; Environment SESDE2022, Rom, Italy (2022). DOI: <a href="https://doi.org/10.46354/i3m.2022.sesde.006">10.46354/i3m.2022.sesde.006</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2022</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Databases</span><span class="badge">Modelling</span>        </div>
+        Pointner A., Praschl C., Krauss O. <strong>Towards Modelling Namespaces in Graph Databases</strong>. Proceedings of the 34rd European Modeling and Simulation Symposium EMSS2022, Rom, Italy (2022). DOI: <a href="https://doi.org/10.46354/i3m.2022.emss.021">10.46354/i3m.2022.emss.021</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2022</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Zwettler G., Ono Y., Stradner M., &amp; Praschl C. <strong>Strategies for Semi-Automated Registration of Historic Aerial Photographs Utilizing Street and Roof Segmentations as Durable Landmarks</strong>. Proceedings of the 34th European Modeling and Simulation Symposium EMSS2022, Rom, Italy (2022). DOI: <a href="https://doi.org/10.46354/i3m.2022.emss.028">10.46354/i3m.2022.emss.028</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2022</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Databases</span><span class="badge">Modelling</span>        </div>
+        Praschl C., Pointner A., Krauss O., Helm E., Schuler A. <strong>Model Verification in Graph Databases and its Application in Neo4j</strong>. Proceedings of the 34th European Modeling and Simulation Symposium EMSS2022, Rom, Italy (2022). DOI: <a href="https://doi.org/10.46354/i3m.2022.emss.020">10.46354/i3m.2022.emss.020</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2022</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Augmented Reality</span>        </div>
+        Praschl C., Thiele E., Krauss O. <strong>Utilization of Geographic Data for the Creation of Occlusion Models in the Context of Mixed Reality Applications</strong>. Extended Reality, 1st ed. Lecture Notes in Computer Science. Volume 13446 (2022). DOI: <a href="https://doi.org/10.1007/978-3-031-15553-6_18">10.1007/978-3-031-15553-6_18</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2022</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Stradner M., Ono Y., Zwettler G. <strong>Towards an Automated System for Reverse Geocoding of Aerial Photographs</strong>. WSCG 2022: proceedings: 30. International Conference in Central Europe on Computer Graphics, Visualization and Computer Vision, p. 296-301 (2022). DOI: <a href="https://doi.org/10.24132/CSRN.3201.37">10.24132/CSRN.3201.37</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2022</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Augmented Reality</span>        </div>
+        Praschl C., Krauss O. <strong>Geo-Referenced Occlusion Models for Mixed Reality Applications using the Microsoft HoloLens</strong>. IVAPP, 2022. DOI: <a href="https://doi.org/10.5220/0010775200003124">10.5220/0010775200003124</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2022</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Auersperg-Castell P., Forster-Heinlein B. &amp; Zwettler G.A. <strong>Segmentation and Multi-facet Classification of Individual Logs in Wooden Piles</strong>. In: Lecture Notes in Computer Science (2022). DOI: <a href="https://doi.org/10.1007/978-3-031-25312-6_54">10.1007/978-3-031-25312-6_54</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2022</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C. and Zwettler G. <strong>Three-step Approach for Localization, Instance Segmentation and Multi-facet Classification of Individual Logs in Wooden Piles</strong>. ICPRAM, 2022. DOI: <a href="https://doi.org/10.5220/0010892100003122">10.5220/0010892100003122</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2021</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Journal</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Pointner A., Baumgartner D., &amp; Zwettler G. <strong>Imaging framework: An interoperable and extendable connector for image-related Java frameworks</strong>. SoftwareX, 16, 100863 (2021). DOI: <a href="https://doi.org/10.1016/j.softx.2021.100863">10.1016/j.softx.2021.100863</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2021</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Zwettler G., Reichhardt A., Stradner M., Praschl C., Helm E. <strong>EpiMon: Vision-Based Early Warning System for Monitoring Uprising Epileptic Seizures During Night</strong>. Proceedings of the 10th International Workshop on Innovative Simulation for Healthcare (IWISH 2021), pp. 17-26. DOI: <a href="https://doi.org/10.46354/i3m.2021.iwish.004">10.46354/i3m.2021.iwish.004</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2021</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C., Auersperg-Castell P., Forster-Heinlein B., Zwettler G.A. <strong>Multi-Resolution Localization of Individual Logs in Wooden Piles Utilizing YOLO with Tiling on Client/Server Architectures</strong>. Proceedings of the 33rd European Modeling &amp; Simulation Symposium (EMSS 2021), pp. 307-314. DOI: <a href="https://doi.org/10.46354/i3m.2021.emss.042">10.46354/i3m.2021.emss.042</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2021</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Pointner A., Praschl C., Krauss O., Schuler A., Helm E., Zwettler G. <strong>Line Clustering and Contour Extraction in the Context of 2D Building Plans</strong>. WSCG 2021: full papers proceedings: 29. International Conference in Central Europe on Computer Graphics, Visualization and Computer Vision, p. 11-20 (2021). DOI: <a href="https://doi.org/10.24132/CSRN.2021.3101.2">10.24132/CSRN.2021.3101.2</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2021</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Zwettler G., Praschl C., Baumgartner D., Zucali T., Turk D., Hanreich M., Schuler A. <strong>Three-step Alignment Approach for Fitting a Normalized Mask of a Person Rotating in A-Pose or T-Pose Essential for 3D Reconstruction based on 2D Images and CGI Derived Reference Target Pose</strong>. In Proceedings of the 16th International Joint Conference on Computer Vision, Imaging and Computer Graphics Theory and Applications – Volume 5: VISAPP (2021). DOI: <a href="https://doi.org/10.5220/0010194102810292">10.5220/0010194102810292</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2020</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Journal</span>
+<span class="badge">Augmented Reality</span>        </div>
+        Praschl C., Krauss O., Zwettler G. <strong>Enabling outdoor MR capabilities for head mounted displays: a case study</strong>. International Journal of Simulation and Process Modelling 2020: 512-523. DOI: <a href="https://doi.org/10.1504/IJSPM.2020.10034724">10.1504/IJSPM.2020.10034724</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2020</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Computer Vision</span>        </div>
+        Baumgartner D., Praschl C., Zucali T., Zwettler G. <strong>Hybrid approach for orientation-estimation of rotating humans in video frames acquired by stationary monocular camera</strong>. WSCG 2020: full papers proceedings: 28th International Conference in Central Europe on Computer Graphics, Visualization and Computer Vision, p. 39-47 (2020). DOI: <a href="https://doi.org/10.24132/CSRN.2020.3001.5">10.24132/CSRN.2020.3001.5</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2019</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Master&#39;s Thesis</span>
+<span class="badge">Modelling</span>        </div>
+        Praschl C. <strong>Erkennung von Informationsverlust in der Modelltransformation</strong>. FH Oberösterreich (2019). DOI: <a href="https://doi.org/10.5281/zenodo.4450044">10.5281/zenodo.4450044</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2018</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Scientific Paper</span>
+<span class="badge">Augmented Reality</span>        </div>
+        Praschl C., Krauss O., Zwettler G. <strong>Towards retooling the Microsoft HoloLens as outdoor AR and MR device</strong>. Proceedings of the 30th European Modeling and Simulation Symposium EMSS2018, Budapest, Hungary (2018). DOI: <a href="https://doi.org/10.46354/i3m.2018.mas.020">10.46354/i3m.2018.mas.020</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2017</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Practical Bachelor&#39;s Thesis</span>
+<span class="badge">Computer Vision</span>        </div>
+        Praschl C. <strong>Bildbasierte Orientierung im Outdoorbereich</strong>. FH OÖ (2017). DOI: <a href="https://doi.org/10.5281/zenodo.7054350">10.5281/zenodo.7054350</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2017</div>
+      <div class="what">
+        <div class="badges">
+          <span class="badge">Theoretical Bachelor&#39;s Thesis</span>
+<span class="badge">Augmented Reality</span>        </div>
+        Praschl C. <strong>Augmented Reality Frameworks</strong>. FH OÖ (2017). DOI: <a href="https://doi.org/10.5281/zenodo.7054352">10.5281/zenodo.7054352</a>      </div>
+    </div>
+  </section>
+
+
+  <section id="theses">
+    <h2>Supervised Bachelor Theses</h2>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        Lennard Wagner. <strong>Abfrage von Kontraindikationen für radiologische Untersuchungstechniken bei dem Anamnesegespräch in Radiologien</strong><br>
+        <span class="sub">Medizin &amp; Bioinformatik (Bachelor), FH Oberösterreich Campus Hagenberg</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        Nicolas Bernhart. <strong>Vergleich von Data Lake und Data Warehouse Systemen im Salesumfeld</strong><br>
+        <span class="sub">Digital Business &amp; Software Engineering (Bachelor), Management Center Innsbruck</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2026</div>
+      <div class="what">
+        Alessandro Valentini. <strong>Zeitserien in Redis – Ein Vergleich mit TimescaleDB</strong><br>
+        <span class="sub">Digital Business &amp; Software Engineering (Bachelor), Management Center Innsbruck</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2025</div>
+      <div class="what">
+        Michael Würflinger. <strong>Generative Artificial Intelligence for Airborne Imagery</strong><br>
+        <span class="sub">Medizin &amp; Bioinformatik (Bachelor), FH Oberösterreich Campus Hagenberg</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2025</div>
+      <div class="what">
+        David Eberhard. <strong>Interaktiver Zugriff auf NoSQL-Datenbanken in Jupyter Notebooks: Entwicklung eines Plugins</strong><br>
+        <span class="sub">Digital Business &amp; Software Engineering (Bachelor), Management Center Innsbruck</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2025</div>
+      <div class="what">
+        Alexander Kammerlander. <strong>Vergleich von spaltenorientierten Datenbanken im Kontext von Zeitserien</strong><br>
+        <span class="sub">Digital Business &amp; Software Engineering (Bachelor), Management Center Innsbruck</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2025</div>
+      <div class="what">
+        Eva Szöke. <strong>Zeitreihenverwaltung in Graphdatenbanken: Entwicklung eines modernen Plugins zur Verwaltung von Zeitserien in Neo4j</strong><br>
+        <span class="sub">Digital Business &amp; Software Engineering (Bachelor), Management Center Innsbruck</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2024</div>
+      <div class="what">
+        Mario Bedenk. <strong>Vector Databases: Performance Benchmarks with varying dataset size and dimensionality</strong><br>
+        <span class="sub">Digital Business &amp; Software Engineering (Bachelor), Management Center Innsbruck</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2024</div>
+      <div class="what">
+        Christina Greiderer. <strong>Applying the Concept of a Digital Twin on Gas Engine Customers</strong><br>
+        <span class="sub">Digital Business &amp; Software Engineering (Bachelor), Management Center Innsbruck</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2024</div>
+      <div class="what">
+        Aleida Sanner. <strong>Identifying key performance indicators based on user behavior tracking</strong><br>
+        <span class="sub">Digital Business &amp; Software Engineering (Bachelor), Management Center Innsbruck</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2024</div>
+      <div class="what">
+        Alexandra Schweninger. <strong>Datenzentrierte Evaluierung und Optimierung eines Ticket Systems zur Projektabwicklung</strong><br>
+        <span class="sub">Digital Business &amp; Software Engineering (Bachelor), Management Center Innsbruck</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        Michael Karbasch. <strong>Kontinuierliche Aggregationen von Zeitserien</strong><br>
+        <span class="sub">Digital Business &amp; Software Engineering (Bachelor), Management Center Innsbruck</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        Spasojevic Aleksandar. <strong>Vergleich von Object-Relational Mapping Frameworks</strong><br>
+        <span class="sub">Digital Business &amp; Software Engineering (Bachelor), Management Center Innsbruck</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        Thomas Kostenzer. <strong>Betrachtung der Performance von Datenbanken beim Speichern und Abfragen von Zeitreihendaten</strong><br>
+        <span class="sub">Digital Business &amp; Software Engineering (Bachelor), Management Center Innsbruck</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2023</div>
+      <div class="what">
+        Annina Ecker. <strong>Alpine Windenergie: Entwicklung einer Applikation zur Sichtbarmachung von Windenergiepotential in den Tiroler Alpen</strong><br>
+        <span class="sub">Digital Business &amp; Software Engineering (Bachelor), Management Center Innsbruck</span>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2022</div>
+      <div class="what">
+        Alexander Kogler. <strong>Applying domain-driven design to a graph database to derive graphical user interfaces</strong><br>
+        <span class="sub">Digital Business &amp; Software Engineering (Bachelor), Management Center Innsbruck</span>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="academic-activities">
+    <h2>Academic Activities</h2>
+    <div class="entry">
+      <div class="when">09|2026<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://ietresearch.onlinelibrary.wiley.com/journal/17519640">IET Computer Vision</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">08|2026<br><span class="badge">Review</span></div>
+      <div class="what">
+Journal of Real-Time Image Processing      </div>
+    </div>
+    <div class="entry">
+      <div class="when">08|2026<br><span class="badge">Review</span></div>
+      <div class="what">
+Copernicus egusphere      </div>
+    </div>
+    <div class="entry">
+      <div class="when">07|2026<br><span class="badge">Review</span></div>
+      <div class="what">
+European Conference on Computer Vision      </div>
+    </div>
+    <div class="entry">
+      <div class="when">06|2026<br><span class="badge">Review</span></div>
+      <div class="what">
+Hawaii International Conference on System Sciences      </div>
+    </div>
+    <div class="entry">
+      <div class="when">06|2026<br><span class="badge">Review</span></div>
+      <div class="what">
+Computational and Structural Biotechnology Journal      </div>
+    </div>
+    <div class="entry">
+      <div class="when">06|2026<br><span class="badge">Review</span></div>
+      <div class="what">
+IET Computer Vision      </div>
+    </div>
+    <div class="entry">
+      <div class="when">03|2026<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://airov.at/">Austrian Symposium on AI, Robotics, and Vision (AIRoV)</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">12|2025<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://link.springer.com/journal/42991">Springer Mammalian Biology</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">09|2025<br><span class="badge">Workshop Chair</span> <span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://camtrapai.github.io/">5th International Workshop on Camera traps, AI, and Ecology</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">05|2025<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://airov.at/">Austrian Symposium on AI, Robotics, and Vision (AIRoV)</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2024<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://qims.amegroups.org/">Quantitative Imaging in Medicine and Surgery (QIMS)</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2024<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://www.nature.com/srep/">Springer Nature Scientific Reports</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">09|2024<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://link.springer.com/journal/11042">Springer Multimedia Tools And Applications</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">09|2024<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://ietresearch.onlinelibrary.wiley.com/journal/17519640">IET Computer Vision</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">06|2024<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://ietresearch.onlinelibrary.wiley.com/journal/17519640">IET Computer Vision</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">05|2024<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://ietresearch.onlinelibrary.wiley.com/journal/17519640">IET Computer Vision</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">02|2024<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://www.ocg.at/en/events/airov-first-austrian-symposium-ai-robotics-and-vision">Austrian Symposium on AI, Robotics, and Vision (AIRoV)</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">02|2024<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://ietresearch.onlinelibrary.wiley.com/journal/17519640">IET Computer Vision</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">11|2023<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://www.sciencedirect.com/journal/artificial-intelligence-in-medicine">Artificial Intelligence in Medicine (AIIM)</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">11|2023<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://qims.amegroups.org/">Quantitative Imaging in Medicine and Surgery (QIMS)</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2023<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://www.asai.ac.at/en/news/detail/call-for-papers-oagm-workshop-2023">Austrian Association for Pattern Recognition (OAGM)</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">09|2023<br><span class="badge">Workshop Host</span> <span class="badge">Editor</span></div>
+      <div class="what">
+<a href="https://camtrap2024.fh-ooe.at">4th International Workshop on Camera traps, AI, and Ecology</a><div class="sub"><a href="https://ceur-ws.org/Vol-3786/">Proceedings</a></div>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">09|2023<br><span class="badge">Session Chair</span> <span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://inf-cv.uni-jena.de/camtrap-ws/">3rd International Workshop on Camera traps, AI, and Ecology (Track: Animal Re-ID)</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">08|2023<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://www.techscience.com/journal/cmc">CMC – Computers, Materials &amp; Continua</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">12|2022<br><span class="badge">Review</span></div>
+      <div class="what">
+<a href="https://www.techscience.com/journal/cmc">CMC – Computers, Materials &amp; Continua</a>      </div>
+    </div>
+  </section>
+
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="entry">
+      <div class="when">08|2026 – 03|2027<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Project lead</span>      </div>
+      <div class="what">
+        <strong>MoonshotAI</strong>
+<div class="sub">Topic: AI-based transformation of 2D construction plans into 3D models for simulation</div>        <div class="sub">Focus: Computer Vision</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">08|2026 – 03|2027<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Project lead</span>      </div>
+      <div class="what">
+        <strong>AI Production Knowledge</strong>
+<div class="sub">Topic: LLM-based knowledge graph in the context of production lines in the plastics industry</div>        <div class="sub">Focus: Data Science</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">04|2026 – 10|2026<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Project lead</span>      </div>
+      <div class="what">
+        <strong>Soggiorno</strong>
+<div class="sub">Topic: Use of language models in the context of an Italian language course</div>        <div class="sub">Focus: Data Science</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">03|2026 – 05|2026<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Project lead</span>      </div>
+      <div class="what">
+        <strong>Stringnet</strong>
+<div class="sub">Topic: Image optimisation and automated quality evaluation of input images in the context of string art</div>        <div class="sub">Focus: Computer Vision</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">01|2026<br>
+        <span class="badge">Open source project</span>
+      </div>
+      <div class="what">
+        <strong>Bambi - QGIS Integration</strong>
+<div class="sub">Topic: QGIS plugin in the context of drone-based wildlife observation</div>        <div class="sub">Link:
+          <a href="https://plugins.qgis.org/plugins/bambi_wildlife_detection/">https://plugins.qgis.org/plugins/bambi_wildlife_detection/</a>
+</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">11|2025 – 11|2026<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Project lead</span>      </div>
+      <div class="what">
+        <strong>Aximote</strong>
+<div class="sub">Topic: Predictive maintenance and scoring in the context of Android Automotive</div>        <div class="sub">Focus: Data Science</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">08|2025 – 10|2025<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Project lead</span>      </div>
+      <div class="what">
+        <strong>CatchGoal</strong>
+<div class="sub">Topic: Recommendation engine in the context of expert search</div>        <div class="sub">Focus: Data Science</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">08|2025 – 10|2025<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Project lead</span>      </div>
+      <div class="what">
+        <strong>Buildpilot AI</strong>
+<div class="sub">Topic: Platform for automated code generation using large language models</div>        <div class="sub">Focus: LLM</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">05|2025 – 07|2025<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Project lead</span>      </div>
+      <div class="what">
+        <strong>Redem Fingerprinting</strong>
+<div class="sub">Topic: Request fingerprinting in the context of online surveys</div>        <div class="sub">Focus: Data Science</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2024 – 10|2026<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Contributor</span>      </div>
+      <div class="what">
+        <strong>THUMPER</strong>
+<div class="sub">Topic: Drone-based biodiversity assessment via automatic classification of animals using RGB and thermal images without light field computation</div>        <div class="sub">Focus: Computer Vision, Drones</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">08|2024 – 12|2024<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Contributor</span>      </div>
+      <div class="what">
+        <strong>Drones4ASP</strong>
+<div class="sub">Topic: Automatic detection of wild boar carcasses in the context of African swine fever</div>        <div class="sub">Focus: Computer Vision, Drones</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">09|2024 – 10|2024<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Project lead</span>      </div>
+      <div class="what">
+        <strong>Danube Dynamics Holzpolter Vermessung</strong>
+<div class="sub">Topic: 3D reconstruction of panoramic images of wood piles for volume estimation</div>        <div class="sub">Focus: Computer Vision</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">06|2024 – 09|2024<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Project lead</span>      </div>
+      <div class="what">
+        <strong>Redem Cohearance Score</strong>
+<div class="sub">Topic: LLM-based coherence score in the context of online surveys</div>        <div class="sub">Focus: Data Science</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">08|2023 – 07|2024<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Project lead</span>      </div>
+      <div class="what">
+        <strong>SmartBuoy 2.0</strong>
+<div class="sub">Topic: Processing of sensor data for detecting moored boats</div>        <div class="sub">Focus: Machine Learning, Signal processing</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">08|2023 – 12|2025<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Project lead</span>      </div>
+      <div class="what">
+        <strong>Treetop Medical</strong>
+<div class="sub">Topic: Digital modelling of medical knowledge using process mining</div>        <div class="sub">Focus: Modelling, Process Mining</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">12|2022 – 06|2023<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>K. f. V. - Wildtiermodellierung</strong>
+<div class="sub">Topic: Modelling of wildlife crossings on roads</div>        <div class="sub">Focus: Computer Vision, Modelling, Drones</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">04|2022 – 07|2025<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>Bambi</strong>
+<div class="sub">Topic: Drone-based biodiversity assessment via automatic classification of animals based on light fields using RGB and thermal images</div>        <div class="sub">Focus: Computer Vision, Drones</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">03|2022 – 12|2025<br>
+        <span class="badge">Research project</span>
+<br><span class="badge">Project lead + contributor</span>      </div>
+      <div class="what">
+        <strong>Move</strong>
+<div class="sub">Topic: Automated creation of orthoses from three-dimensional body scans of the affected areas</div>        <div class="sub">Focus: Computer Vision, 3D modelling</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">01|2022 – 11|2022<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>Big Power Data</strong>
+<div class="sub">Topic: Evaluation of NewSQL databases for persisting and aggregating time series data in the energy sector</div>        <div class="sub">Focus: NewSQL</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2021 – 02|2022<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>AlpinIO</strong>
+<div class="sub">Topic: Visual preparation, processing and analysis of alpine vegetation of the Hohe Tauern National Park with a focus on classification and segmentation of plants</div>        <div class="sub">Focus: Computer Vision</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2021 – 02|2022<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>Amido</strong>
+<div class="sub">Topic: Geo-referencing of historical aerial photographs based on the comparison of geographic features (rivers, roads, hills, …) and digital data</div>        <div class="sub">Focus: Computer Vision</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">08|2021<br>
+        <span class="badge">Open source project</span>
+      </div>
+      <div class="what">
+        <strong>GeoFiles</strong>
+<div class="sub">Topic: Open source project in the context of geo-referenced geometry file formats</div>        <div class="sub">Link:
+          <a href="https://github.com/FHOOEAIST/geofiles">https://github.com/FHOOEAIST/geofiles</a>
+</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">05|2021 – 09|2021<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>Mixed Reality Coverage Calculation</strong>
+<div class="sub">Topic: Outdoor occlusion calculation based on topography and 3D reconstructions from image data</div>        <div class="sub">Focus: Mixed Reality, Computer Vision</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">12|2020<br>
+        <span class="badge">Open source project</span>
+      </div>
+      <div class="what">
+        <strong>Relational Model Creator</strong>
+<div class="sub">Topic: GUI tool for creating relational database models in text notation</div>        <div class="sub">Link:
+          <a href="https://gitlab.com/cpraschl/relationalmodelcreator">https://gitlab.com/cpraschl/relationalmodelcreator</a>
+</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">since 08|2020<br>
+        <span class="badge">Open source project</span>
+      </div>
+      <div class="what">
+        <strong>Various open source projects of the AIST research group</strong>
+<div class="sub">Topic: Various (utility class kit JACK, logging framework Seshat, graph framework GTF, Imaging, …)</div>        <div class="sub">Link:
+          <a href="https://github.com/FHOOEAIST">https://github.com/FHOOEAIST</a>
+</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2020 – 04|2021<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>Woodmaster Plus</strong>
+<div class="sub">Topic: Image-based tree trunk localisation and segmentation of wood piles with subsequent quality and species classification of the segmented trunks</div>        <div class="sub">Focus: Computer Vision, Image processing</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">07|2020 – 11|2020<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>Weigl</strong>
+<div class="sub">Topic: Emotion recognition based on vital signs</div>        <div class="sub">Focus: Machine Learning, Time Series Database, Time-Series-Forecasting</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">07|2020 – 08|2021<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>Speichercluster Südburgenland</strong>
+<div class="sub">Topic: Clustering of smart homes for joint optimisation of electricity production and consumption</div>        <div class="sub">Focus: Software architecture</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">06|2020 – 07|2020<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>SimRev</strong>
+<div class="sub">Topic: Mixed reality simulator for 1:5 RC vehicles controlled via a 5G mobile connection, sending data (stereo image, speed, vibration, …) to the simulator</div>        <div class="sub">Focus: Mixed Reality, Signal processing, Software architecture</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">02|2020 – 06|2020<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>ARRR – Augmented Reality Room Recognition</strong>
+<div class="sub">Topic: Automated room and floor recognition for an indoor navigation system in the context of augmented reality using the HoloLens 2</div>        <div class="sub">Focus: Augmented Reality, Image processing</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">08|2019 – 05|2020
+08|2020 – 11|2020<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>TrueSize</strong>
+<div class="sub">Topic: Body measurement with mobile devices for clothing purchases and for determining (regional) clothing sizes and their changes over time</div>        <div class="sub">Focus: Image processing, Computer Vision, Software architecture</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">12|2019 – 02|2020<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>Kimiku</strong>
+<div class="sub">Topic: Predicting customer behaviour based on aggregated data sets of different companies</div>        <div class="sub">Focus: Data aggregation and analysis</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">05|2019 – 08|2019<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>Spectory</strong>
+<div class="sub">Topic: Floor detection for augmentation of virtual alternative floors, e.g. for renovations or real estate agents</div>        <div class="sub">Focus: Augmented Reality, Image processing</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2018 – 12|2019<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>Plan Analysis using Self-learning Solutions</strong>
+<div class="sub">Topic: Automated construction plan recognition and transformation into a 3D model</div>        <div class="sub">Focus: Image processing, Software architecture, Model transformation and verification, Graph databases</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2017 – 02|2018<br>
+        <span class="badge">Student project</span>
+      </div>
+      <div class="what">
+        <strong>Keba AG</strong>
+<div class="sub">Topic: Augmented reality with Microsoft HoloLens</div><div class="sub">Role: Developer, AR development group lead</div>        <div class="sub">Project video:
+          <a href="https://www.youtube.com/watch?v=XHikKF8rPU4">https://www.youtube.com/watch?v=XHikKF8rPU4</a>
+</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">04|2018<br>
+        <span class="badge">Open source project</span>
+      </div>
+      <div class="what">
+        <strong>C# reimplementation &#34;Messerwellenrechner&#34;</strong>
+        <div class="sub">Link:
+          <a href="https://www.bitbucket.org/messerwellenrechnerteam/diameter-shaft-calculator">https://www.bitbucket.org/messerwellenrechnerteam/diameter-shaft-calculator</a>
+</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">04|2017 – 10|2018<br>
+        <span class="badge">Research project</span>
+      </div>
+      <div class="what">
+        <strong>Drive4Knowledge</strong>
+<div class="sub">Topic: Augmented reality assisted driving training</div>        <div class="sub">Focus: Augmented Reality</div>
+        <div class="sub">Link:
+          <a href="https://www.muehlviertel.tv/beitraege/tag-der-offenen-tuer-fh-hagenberg/">https://www.muehlviertel.tv/beitraege/tag-der-offenen-tuer-fh-hagenberg/</a>
+(timestamp: approx. 0:25-1:17)</div>
+      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2016 – 02|2017<br>
+        <span class="badge">Student project</span>
+      </div>
+      <div class="what">
+        <strong>RealSim</strong>
+<div class="sub">Topic: Augmented reality with Microsoft HoloLens</div><div class="sub">Role: Developer</div>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">03|2016 – 06|2016<br>
+        <span class="badge">Student project</span>
+      </div>
+      <div class="what">
+        <strong>Formelracing</strong>
+<div class="sub">Topic: Virtual reality with Oculus Rift &amp; augmented reality with Epson Moverio BT-200</div><div class="sub">Role: Product owner; developer</div>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">2015<br>
+        <span class="badge">Contract project</span>
+      </div>
+      <div class="what">
+        <strong>Constantia Teich GmbH</strong>
+<div class="sub">Topic: Java program development &#34;Messerwellenrechner&#34;</div>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">since 2009<br>
+        <span class="badge">Graphics projects</span>
+      </div>
+      <div class="what">
+        <strong>Various work in photography, graphic and web design</strong>
+<div class="sub">Topic: incl. CD covers, print media, homepages, logo designs</div>      </div>
+    </div>
+  </section>
+
+
+  <section id="outreach">
+    <h2>Other Activities</h2>
+    <div class="entry">
+      <div class="when">07|2026</div>
+      <div class="what">
+Tutorial session @ WRTI Drone Technology for Wildlife Conservation      </div>
+    </div>
+    <div class="entry">
+      <div class="when">05|2026</div>
+      <div class="what">
+<a href="https://pintofscience.at/event/star-tech/">Science Slam @ PintOfScience</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">04|2026</div>
+      <div class="what">
+Fair support @ Lange Nacht der Forschung      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2024</div>
+      <div class="what">
+Panel session “Career in Academia” @ EC²U-Forum JKU      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2024</div>
+      <div class="what">
+Fair support @ FH&gt;&gt;next      </div>
+    </div>
+    <div class="entry">
+      <div class="when">09|2024</div>
+      <div class="what">
+<a href="https://innovation.linz.at/de/aktuelle-projekte/sciencity-2024/">Science Slam @ “Brainstage”</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">09|2024</div>
+      <div class="what">
+Project presentation MOVE @ DACHS’24 Symposium      </div>
+    </div>
+    <div class="entry">
+      <div class="when">05|2024</div>
+      <div class="what">
+Fair support @ Lange Nacht der Forschung      </div>
+    </div>
+    <div class="entry">
+      <div class="when">03|2024</div>
+      <div class="what">
+Support @ open house day FH OÖ      </div>
+    </div>
+    <div class="entry">
+      <div class="when">10|2023</div>
+      <div class="what">
+Fair support @ FH&gt;&gt;next      </div>
+    </div>
+    <div class="entry">
+      <div class="when">09|2023</div>
+      <div class="what">
+Fair support @ agricultural &amp; autumn fair Ried      </div>
+    </div>
+    <div class="entry">
+      <div class="when">08|2023</div>
+      <div class="what">
+<a href="https://www.kfv.at/tiere-auf-der-fahrbahn-fast-500-menschen-im-jahr-2022-verletzt/">Video interview for Kuratorium für Verkehrssicherheit: “Animals on the road: almost 500 people injured in 2022”</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">06|2023</div>
+      <div class="what">
+<a href="https://issuu.com/bluepepper-media/docs/steirische_jaegerin_02-2023_issuu">Article for the magazine “Die steirische Jägerinnen” (summer edition 2023)</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">03|2023</div>
+      <div class="what">
+Support @ open house day FH OÖ      </div>
+    </div>
+    <div class="entry">
+      <div class="when">03|2023</div>
+      <div class="what">
+<a href="https://www.zdf.de/dokumentation/terra-x/sebastian-stroebel-meine-alpen-extreme-der-berge-doku-100.html">Video interview for ZDF Terra X: Sebastian Ströbel - Meine Alpen: Extreme der Berge</a>      </div>
+    </div>
+    <div class="entry">
+      <div class="when">02|2023</div>
+      <div class="what">
+Seminar “Computer-aided diagnosis” @ Traumberufe Technik      </div>
+    </div>
+  </section>
+
+
+  <section id="training">
+    <h2>Continuing Education</h2>
+    <div class="entry">
+      <div class="when">01|2025</div>
+      <div class="what">TÜV certification - engineer</div>
+    </div>
+    <div class="entry">
+      <div class="when">05|2024</div>
+      <div class="what">Workshop: storytelling in R&amp;D</div>
+    </div>
+    <div class="entry">
+      <div class="when">05|2023 – 06|2023</div>
+      <div class="what">Competence training for successfully leading R&amp;D projects</div>
+    </div>
+    <div class="entry">
+      <div class="when">06|2021 – 07|2021</div>
+      <div class="what">FFG Academy - FIT4FUNDING: seminar on EU research funding</div>
+    </div>
+    <div class="entry">
+      <div class="when">01|2021</div>
+      <div class="what">Professional university didactics seminar 1</div>
+    </div>
+    <div class="entry">
+      <div class="when">08|2020</div>
+      <div class="what">Didactics for online teaching</div>
+    </div>
+    <div class="entry">
+      <div class="when">08|2020</div>
+      <div class="what">Adobe Connect &amp; Sakai for online teaching</div>
+    </div>
+    <div class="entry">
+      <div class="when">07|2020</div>
+      <div class="what">Designing interactive webinars</div>
+    </div>
+  </section>
+
+
+  <section id="awards">
+    <h2>Awards and Honours</h2>
+    <ul class="plain">
+<li>GRIVAPP 2026 Best Student Paper Award</li><li>Young Researcher Award FH Oberösterreich 2025</li>    </ul>
+  </section>
+
+
+  <section id="licenses">
+    <h2>Licences</h2>
+    <ul class="plain">
+<li>Driving licence class A</li><li>Driving licence class B</li><li>Drone licence A1/A3 and A2</li>    </ul>
+  </section>
+
+
+  <section id="interests">
+    <h2>Interests</h2>
+    <ul class="chips">
+<li>Image processing &amp; computer vision</li><li>Software architecture</li><li>Mixed Reality</li><li>Arduino programming</li><li>Drones</li><li>3D printing</li><li>Graphic design</li><li>Photography</li>    </ul>
+  </section>
+
+  <footer>
+    Curriculum Vitae Christoph Praschl · 28.09.2026
+  </footer>
+</div>
+<script>
+(function () {
+  var links = document.querySelectorAll('.topnav a[data-section]');
+  var pill = document.getElementById('lang-pill');
+  var pillBase = pill.getAttribute('href').split('#')[0];
+  var current = null;
+
+  function activate(id) {
+    if (id === current) return;
+    current = id;
+    links.forEach(function (a) {
+      var on = a.dataset.section === id;
+      a.classList.toggle('active', on);
+      if (on) a.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    });
+    // carry the section over to the other language version
+    pill.setAttribute('href', id ? pillBase + '#' + id : pillBase);
+  }
+
+  var sections = [];
+  links.forEach(function (a) {
+    var s = document.getElementById(a.dataset.section);
+    if (s) sections.push(s);
+  });
+
+  function onScroll() {
+    var probe = window.scrollY + window.innerHeight * 0.25;
+    var active = null;
+    sections.forEach(function (s) {
+      if (s.offsetTop <= probe) active = s.id;
+    });
+    activate(active);
+  }
+
+  window.addEventListener('scroll', function () {
+    window.requestAnimationFrame(onScroll);
+  }, { passive: true });
+  onScroll();
+})();
+</script>
+<script>
+(function () {
+  var track = document.querySelector('.car-track');
+  if (!track) return;
+  var slides = track.querySelectorAll('.car-slide');
+  var dots = document.querySelector('.car-dots');
+
+  slides.forEach(function (_, i) {
+    var b = document.createElement('button');
+    b.setAttribute('aria-label', 'Slide ' + (i + 1));
+    b.addEventListener('click', function () { goTo(i); });
+    dots.appendChild(b);
+  });
+
+  function index() {
+    return Math.round(track.scrollLeft / track.clientWidth);
+  }
+  function goTo(i) {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    track.scrollTo({ left: i * track.clientWidth, behavior: 'smooth' });
+  }
+  function update() {
+    dots.querySelectorAll('button').forEach(function (d, i) {
+      d.classList.toggle('active', i === index());
+    });
+  }
+
+  document.querySelectorAll('.car-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      goTo(index() + parseInt(btn.dataset.dir, 10));
+    });
+  });
+  track.addEventListener('scroll', function () {
+    window.requestAnimationFrame(update);
+  });
+  update();
+})();
+</script>
+</body>
+</html>
