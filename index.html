@@ -82,6 +82,22 @@
     font-size: 1.45rem; font-weight: 400; letter-spacing: .02em;
     border-bottom: 1px solid var(--line); padding-bottom: .35rem; margin: 0 0 1.2rem;
   }
+  /* collapsible sections: the script turns each heading into a toggle and
+     wraps the rest of the section, so without JS everything stays open */
+  .sec-toggle {
+    display: flex; align-items: center; gap: .6rem; width: 100%;
+    background: none; border: none; padding: 0; margin: 0;
+    font: inherit; color: inherit; text-align: left; cursor: pointer;
+  }
+  .sec-toggle .chevron {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 1.6rem; height: 1.6rem; flex-shrink: 0; margin-left: auto;
+    border: 1px solid var(--line); border-radius: 50%;
+    color: var(--muted); font-size: .8rem; transition: transform .2s, color .2s, border-color .2s;
+  }
+  .sec-toggle:hover .chevron, .sec-toggle:focus-visible .chevron { color: var(--accent); border-color: var(--accent); }
+  .sec-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+  section.collapsible.is-collapsed h2 { margin-bottom: 0; }
   h3.term { font-size: 1.05rem; margin: 1.4rem 0 .5rem; color: var(--accent); font-weight: 600; }
 
   .entry {
@@ -165,6 +181,9 @@
     body { background: #fff; color: #000; }
     .topbar { display: none; }
     .page { max-width: none; padding: 0; }
+    .sec-toggle .chevron { display: none; }
+    .sec-body[hidden] { display: block !important; }
+    section.collapsible.is-collapsed h2 { margin-bottom: 1.2rem; }
   }
 </style>
 </head>
@@ -267,7 +286,7 @@
     <div class="car-dots" role="tablist"></div>
   </section>
 
-  <section id="education">
+  <section id="education" class="collapsible">
     <h2>Education</h2>
     <div class="entry">
       <div class="when">since 10|2022</div>
@@ -301,7 +320,7 @@
   </section>
 
 
-  <section id="experience">
+  <section id="experience" class="collapsible">
     <h2>Professional Experience</h2>
     <div class="entry">
       <div class="when">since 10|2022</div>
@@ -355,7 +374,7 @@
   </section>
 
 
-  <section id="teaching">
+  <section id="teaching" class="collapsible">
     <h2>Teaching Experience</h2>
     <div class="entry">
       <div class="when">SS 2027</div>
@@ -791,7 +810,7 @@
   </section>
 
 
-  <section id="publications">
+  <section id="publications" class="collapsible">
     <h2>Publications</h2>
     <div class="entry">
       <div class="when">2026</div>
@@ -1276,7 +1295,7 @@
   </section>
 
 
-  <section id="theses">
+  <section id="theses" class="collapsible">
     <h2>Supervised Bachelor Theses</h2>
     <div class="entry">
       <div class="when">2026</div>
@@ -1393,7 +1412,7 @@
   </section>
 
 
-  <section id="academic-activities">
+  <section id="academic-activities" class="collapsible">
     <h2>Academic Activities</h2>
     <div class="entry">
       <div class="when">09|2026<br><span class="badge">Review</span></div>
@@ -1528,7 +1547,7 @@ IET Computer Vision      </div>
   </section>
 
 
-  <section id="projects">
+  <section id="projects" class="collapsible">
     <h2>Projects</h2>
     <div class="entry">
       <div class="when">08|2026 – 03|2027<br>
@@ -1914,7 +1933,7 @@ IET Computer Vision      </div>
   </section>
 
 
-  <section id="outreach">
+  <section id="outreach" class="collapsible">
     <h2>Other Activities</h2>
     <div class="entry">
       <div class="when">07|2026</div>
@@ -1999,7 +2018,7 @@ Seminar “Computer-aided diagnosis” @ Traumberufe Technik      </div>
   </section>
 
 
-  <section id="training">
+  <section id="training" class="collapsible">
     <h2>Continuing Education</h2>
     <div class="entry">
       <div class="when">01|2025</div>
@@ -2036,21 +2055,21 @@ Seminar “Computer-aided diagnosis” @ Traumberufe Technik      </div>
   </section>
 
 
-  <section id="awards">
+  <section id="awards" class="collapsible">
     <h2>Awards and Honours</h2>
     <ul class="plain">
 <li>GRIVAPP 2026 Best Student Paper Award</li><li>Young Researcher Award FH Oberösterreich 2025</li>    </ul>
   </section>
 
 
-  <section id="licenses">
+  <section id="licenses" class="collapsible">
     <h2>Licences</h2>
     <ul class="plain">
 <li>Driving licence class A</li><li>Driving licence class B</li><li>Drone licence A1/A3 and A2</li>    </ul>
   </section>
 
 
-  <section id="interests">
+  <section id="interests" class="collapsible">
     <h2>Interests</h2>
     <ul class="chips">
 <li>Image processing &amp; computer vision</li><li>Software architecture</li><li>Mixed Reality</li><li>Arduino programming</li><li>Drones</li><li>3D printing</li><li>Graphic design</li><li>Photography</li>    </ul>
@@ -2060,6 +2079,67 @@ Seminar “Computer-aided diagnosis” @ Traumberufe Technik      </div>
     Curriculum Vitae Christoph Praschl · 28.09.2026
   </footer>
 </div>
+<script>
+(function () {
+  // collapsible sections, closed by default
+  var toggles = {};
+
+  function setOpen(section, open) {
+    var t = toggles[section.id];
+    if (!t) return;
+    t.btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    t.body.hidden = !open;
+    section.classList.toggle('is-collapsed', !open);
+  }
+
+  document.querySelectorAll('section.collapsible').forEach(function (section) {
+    var h2 = section.querySelector('h2');
+    var body = document.createElement('div');
+    body.className = 'sec-body';
+    body.id = section.id + '-body';
+    while (h2.nextSibling) body.appendChild(h2.nextSibling);
+    section.appendChild(body);
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'sec-toggle';
+    btn.setAttribute('aria-controls', body.id);
+    var label = document.createElement('span');
+    while (h2.firstChild) label.appendChild(h2.firstChild);
+    var chevron = document.createElement('span');
+    chevron.className = 'chevron';
+    chevron.setAttribute('aria-hidden', 'true');
+    chevron.textContent = '▾';
+    btn.appendChild(label);
+    btn.appendChild(chevron);
+    h2.appendChild(btn);
+
+    toggles[section.id] = { btn: btn, body: body };
+    btn.addEventListener('click', function () {
+      setOpen(section, btn.getAttribute('aria-expanded') !== 'true');
+    });
+    setOpen(section, false);
+  });
+
+  // jumping to a section (navbar, language switch, shared link) opens it
+  function openFromHash() {
+    var s = location.hash && document.getElementById(location.hash.slice(1));
+    if (s && toggles[s.id]) {
+      setOpen(s, true);
+      s.scrollIntoView();
+    }
+  }
+  window.addEventListener('hashchange', openFromHash);
+  // hashchange does not fire when the link's hash is already current
+  document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var s = document.getElementById(a.getAttribute('href').slice(1));
+      if (s && toggles[s.id]) setOpen(s, true);
+    });
+  });
+  openFromHash();
+})();
+</script>
 <script>
 (function () {
   var links = document.querySelectorAll('.topnav a[data-section]');
