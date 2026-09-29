@@ -71,6 +71,40 @@
     color: var(--muted);
   }
   .lang-pill:hover { color: var(--accent); border-color: var(--accent); text-decoration: none; }
+  .nav-burger {
+    display: none; flex-shrink: 0; order: 3;
+    width: 2.4rem; height: 2.4rem; padding: 0 .55rem; gap: .3rem;
+    background: none; border: 1px solid var(--line); border-radius: .5rem;
+    color: var(--muted); cursor: pointer;
+    flex-direction: column; justify-content: center;
+  }
+  .nav-burger span {
+    display: block; height: 2px; border-radius: 1px; background: currentColor;
+    transition: transform .2s, opacity .2s;
+  }
+  .nav-burger:hover, .nav-burger:focus-visible { color: var(--accent); border-color: var(--accent); }
+  .topbar.nav-open .nav-burger span:nth-child(1) { transform: translateY(calc(.3rem + 2px)) rotate(45deg); }
+  .topbar.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+  .topbar.nav-open .nav-burger span:nth-child(3) { transform: translateY(calc(-.3rem - 2px)) rotate(-45deg); }
+  /* phones and narrow tablets: the section links fold into a dropdown behind
+     the burger; the script adds .has-burger, so without JS the scrolling
+     link row stays */
+  @media (max-width: 48rem) {
+    .topbar { padding: .45rem 1rem; gap: .8rem; }
+    .topbar-name { overflow: hidden; text-overflow: ellipsis; flex-shrink: 1; }
+    .topbar.has-burger .lang-pill { margin-left: auto; }
+    .topbar.has-burger .nav-burger { display: flex; }
+    .topbar.has-burger .topnav {
+      display: none; position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; gap: 0; margin: 0; padding: .4rem .6rem .7rem;
+      max-height: calc(100vh - 3.5rem); max-height: calc(100dvh - 3.5rem); overflow-y: auto;
+      background: var(--bg); border-bottom: 1px solid var(--line);
+      box-shadow: 0 .6rem 1.2rem rgba(0, 0, 0, .12);
+      font-size: 1rem;
+    }
+    .topbar.has-burger.nav-open .topnav { display: flex; }
+    .topbar.has-burger .topnav a { padding: .65rem .8rem; border-radius: .5rem; }
+  }
   section, .cv-head { scroll-margin-top: 4rem; }
 
   dl.contact { display: grid; grid-template-columns: max-content 1fr; gap: .15rem 1.2rem; margin: 0; }
@@ -190,7 +224,11 @@
 <body>
 <header class="topbar">
   <a class="topbar-name" href="#top">Christoph Praschl</a>
-  <nav class="topnav" aria-label="Abschnitte">
+  <button type="button" class="nav-burger" id="nav-burger" aria-controls="topnav" aria-expanded="false" hidden
+          aria-label="Menü">
+    <span></span><span></span><span></span>
+  </button>
+  <nav class="topnav" id="topnav" aria-label="Abschnitte">
     <a href="#about" data-section="about">Über mich</a>
     <a href="#current-projects" data-section="current-projects">Highlights</a>
     <a href="#education" data-section="education">Ausbildung</a>
@@ -2076,7 +2114,7 @@ Seminar „Computergestützte Diagnose“ @ Traumberufe Technik      </div>
   </section>
 
   <footer>
-    Curriculum Vitae Christoph Praschl · 28.09.2026
+    Curriculum Vitae Christoph Praschl · 29.09.2026
   </footer>
 </div>
 <script>
@@ -2178,6 +2216,35 @@ Seminar „Computergestützte Diagnose“ @ Traumberufe Technik      </div>
     window.requestAnimationFrame(onScroll);
   }, { passive: true });
   onScroll();
+})();
+</script>
+<script>
+(function () {
+  // burger menu for narrow screens (CSS decides when it is visible)
+  var bar = document.querySelector('.topbar');
+  var burger = document.getElementById('nav-burger');
+  burger.hidden = false;
+  bar.classList.add('has-burger');
+
+  function setMenu(open) {
+    bar.classList.toggle('nav-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+  burger.addEventListener('click', function () {
+    setMenu(!bar.classList.contains('nav-open'));
+  });
+  document.querySelectorAll('.topnav a').forEach(function (a) {
+    a.addEventListener('click', function () { setMenu(false); });
+  });
+  document.addEventListener('click', function (e) {
+    if (!bar.contains(e.target)) setMenu(false);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && bar.classList.contains('nav-open')) {
+      setMenu(false);
+      burger.focus();
+    }
+  });
 })();
 </script>
 <script>
